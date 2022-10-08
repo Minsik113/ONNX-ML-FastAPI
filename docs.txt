@@ -1,0 +1,51 @@
+😀
+pip install tensorflow
+pip install onnxruntime-gpu
+pip install pillow
+pip install fastapi
+pip install "uvicorn[standard]"
+pip install python-multipart
+
+😀실행
+uvicorn app.main:app --reload
+
+😀
+지금까지 로컬에서 했음.
+회사나 다른 프로젝트를 하면 로컬이아니라 클라우드에 올리거나 해야함.
+- 예전에는 shell로 접근해서 환경 그대로 맞춰주고 실행했음. 요즘 이렇게하는 회사 없다. 컨테이너 기반의 서비스로 한다. 요즘은 vm이아니라 container기반으로 바뀜. 일반적으로 Docker를 많이 씀
+- 도커는 운영체제, 패키지 다 저장해둠. 그래서 도커만 실행시킬 수 있다면 어디든 실행 가능.
+
+😀
+docker hub. github랑 비슷. 깃허브는 코드가 저장되어있다면 docker hub는 이미지가 올라와있다(?)
+windows -> docker desktop설치
+쿠버네티스는 이러한 도커들을 어떻게 운영해줄지 지원해주는 거
+
+윈도우는 docker desktop필수다.
+쭉 설치하고 NGINX run해서 next누르면서 설치하자. 
+
+docker ps
+docker ps -a
+docker rm [dontarinerid]
+
+😀
+docker build -t helloapp:v1 .
+docker images 치면 helloapp이라는 images가 생겼다!!
+docker run -it --rm helloapp:v1 /bin/bash 치면 컨테이너 안으로 들어온거다.
+docker build -t myserver:v1 .
+docker run -it --rm -p 8000:80 myserver:v1
+
+https://github.com/tiangolo/uvicorn-gunicorn-fastapi-docker
+
+
+😀저장하기
+volumns에 마운트할 것이냐, image에 같이 넣을거냐에 따라 패턴이 다르다.
+
+docker save -o [압축파일이름] [image이름]:v100
+docker save -o ms-server.tar shinhan:v100 
+
+docker run -it --rm -p 8000:80 -v ./resnet50.onnx:/app/resnet50.onnx shinhan:v100
+
+docker-compuse up -d
+docker-compose ps
+띄워둔거 죽이기
+docker-compuse up down

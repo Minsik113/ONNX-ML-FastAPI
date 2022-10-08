@@ -1,5 +1,3 @@
-cat.jfif
-docs.txt
-main.py
-model_converter.py
-model_download.py
+resnet50.onnx
+ms-server.tar
+model/resnet50/variables/variables.data-00000-of-00001
